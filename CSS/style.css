@@ -1,84 +1,96 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+body {
+  background-image: url("gato.jpg");
+  background-size: auto;
+  
+}
+.portaCartao {
+
+  width: 480px;
+  height: 300px;
+  position: fixed;
+  perspective: 1000px;
+  top: 50%; 
+  left: 50%;
+  margin-top: -150px; 
+  margin-left: -240px;
+
 }
 
-.center{
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2%;
+.cartao {
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 500ms linear; 
+  box-shadow: -5px 5px 5px #aaa;
+  //animation: girar 5s infinite ease-out both;
+  transform: translate3d(0,0,0);
 }
-html, body{
-    height: 100%;
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-header{
-    height: 200px;
-    padding: 20px 0px;
-}
-.logo{
-    width: 50%;
-}
-.menu{
-    padding-top: 30px;
-    width: 50%;
-    text-align: right;
-}
-.menu a{
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 15px;
+.portaCartao:hover .cartao {
+
+  transform: rotateY(180deg);
+  box-shadow: 5px 5px 5px #aaa;
 }
 
-section.sobre{
-    height: calc(100% - 200px);
-    position: relative;
-}
-.extras{
-    position:absolute;
-    bottom: -70px;
-    right: -91px;
-    width: 600px;
-    height: 500px;
-    background-color: #007042;
-    border-radius: 50%;
-}
-.social-media{
-    position:absolute;
-    right: 120px;
-    top: 100px;
-}
-.social-media img{
-    display: block;
-    width: 40px;
-    margin: 10px 0;
-}
-.texto-sobre{
-    margin-top: 100px;
-}
-.texto-sobre h1{
-    font-size: 50px;
-}
-.texto-sobre p{
-    margin: 20px 0;
-    color: black;
-    font-size: 14px;
-    font-weight: bold;
-    max-width: 700px;
+.lado  {
+  background-image: url("v1016-c-08.jpg");
+  background-size: 480px 300px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;       
+  transform: translate3d(0,0,0);
+  background-color: #efefef;
+  cursor: e-resize;
 }
 
-.texto-sobre button{
-    border: 0;
-    background-color: #007042;
-    color: white;
-    border-radius: 10px;
-    width: 100px;
-    height: 30px;
-    cursor: pointer;
+.lado.verso {
+  transform: rotateY(180deg);
+  cursor: w-resize;
+}
+
+@keyframes girar {
+  0%, 40% {
+     transform: rotateY(0deg); 
+  }
+  50%, 90% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.cartao {
+  font-family: Cambria;
+  font-size: 10px;
+  color: white; 
+
+}
+
+.cartao .lado.frente {
+  text-align: center;
+   vertical-align: top; 
+}
+.cartao .lado.frente .info {
+  position: absolute;
+  line-height: 300px;
+  width: 100%;
+  height: 100%;
+}
+.cartao .lado.frente h1 {
+  font-size: 3em;
+}
+.cartao .lado.frente p {
+  font-size: 1.5em;
+  transform: translate3d(0,2em,0);
+}
+.cartao .lado.verso p {
+  
+  position: absolute;
+  font-size: 1.5em;
+  bottom: 1em;
+  left: 1em;
 }
